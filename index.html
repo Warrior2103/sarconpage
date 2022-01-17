@@ -64,6 +64,7 @@
                 <div class="form-row-last">
                     <input type="button" name="getresult" id="getresult" class="register" value="Get Results">
                 </div>
+                <p id="result"></p>
             </form>
 
         </div>
@@ -162,8 +163,10 @@
 
             $("#getresult").on("click", function() {
                 loadData();
+
                 setTimeout(function() {
                     var cost = $("#table-body tr:last").find("td:last").text();
+                    $("#result").text("Your cost is " + cost);
                 }, 3000);
 
             });
