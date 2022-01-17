@@ -35,28 +35,28 @@
                 <div class="form-group">
                     <div class="form-row form-row-1">
                         <label for="Expected Audience">Expected Audience</label>
-                        <input type="text" name="Expected Audience" id="Expected Audience" class="input-text">
+                        <input type="text" name="Expected Audience" id="Expected Audience" class="input-text d1" required>
                     </div>
                     <div class="form-row form-row-1">
                         <label for="Number of Days">Number of Days</label>
-                        <input type="text" name="Number of Days" id="Number of Days" class="input-text">
+                        <input type="text" name="Number of Days" id="Number of Days" class="input-text d2" required>
                     </div>
                 </div>
                 <div class="form-row">
                     <label for="Expected Exhibitors">Expected Exhibitors</label>
-                    <input type="text" name="Expected Exhibitors" id="Expected Exhibitors" class="input-text" required>
+                    <input type="text" name="Expected Exhibitors" id="Expected Exhibitors" class="input-text d3" required>
                 </div>
                 <div class="form-row">
                     <label for="Number of conferencing Tracks">Number of conferencing Tracks</label>
-                    <input type="text" name="Number of conferencing Tracks" id="Number of conferencing Tracks" class="input-text" required>
+                    <input type="text" name="Number of conferencing Tracks" id="Number of conferencing Tracks" class="input-text d4" required>
                 </div>
                 <div class="form-row">
                     <label for="Your Name">Your Name</label>
-                    <input type="text" name="Your Name" id="Your Name" class="input-text" required>
+                    <input type="text" name="Your Name" id="Your Name" class="input-text d5" required>
                 </div>
                 <div class="form-row">
                     <label for="Contact Number">Contact Number</label>
-                    <input type="text" name="Contact Number" id="Contact Number" class="input-text" required>
+                    <input type="text" name="Contact Number" id="Contact Number" class="input-text d6" required>
                 </div>
                 <div class="form-row-last">
                     <input type="submit" name="submit" id="submit" class="register" value="Submit">
@@ -161,18 +161,26 @@
                 });
             });
 
+
             $("#getresult").on("click", function() {
                 loadData();
-
-                setTimeout(function() {
-                    var cost = $("#table-body tr:last").find("td:last").text();
-                    $("#result").text("Your cost is " + cost);
-                }, 3000);
-
+                var d1, d2, d3, d4, d5, d6, d7;
+                d1 = $(".d1").val();
+                d2 = $(".d2").val();
+                d3 = $(".d3").val();
+                d4 = $(".d4").val();
+                d5 = $(".d5").val();
+                d6 = $(".d6").val();
+                if (d1 == "" || d2 == "" || d3 == "" || d4 == "" || d5 == "" || d6 == "") {
+                    alert("Please Fill the Form for the cost");
+                } else {
+                    alert(d1);
+                    setTimeout(function() {
+                        var cost = $("#table-body tr:last").find("td:last").text();
+                        $("#result").text("Your cost is " + cost);
+                    }, 3000);
+                }
             });
-
-
-
         }
     }
 </script>
