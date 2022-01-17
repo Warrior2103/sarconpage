@@ -61,9 +61,6 @@
                 <div class="form-row-last">
                     <input type="submit" name="submit" id="submit" class="register" value="Submit">
                 </div>
-                <div class="form-row-last">
-                    <input type="button" name="getresult" id="getresult" class="register" value="Get Results">
-                </div>
                 <p id="result"></p>
             </form>
 
@@ -86,16 +83,6 @@
     <script>
         const scriptURL = 'https://script.google.com/macros/s/AKfycbx4d--7JdiYlhZzB56OjEiEYQQZPLzFyCgQtRKk5YRG8EKZzSQUHJc_6GF171acycMs-A/exec'
         const form = document.forms['google-sheet']
-
-        form.addEventListener('submit', e => {
-            e.preventDefault()
-            fetch(scriptURL, {
-                    method: 'POST',
-                    body: new FormData(form)
-                })
-                .then(response => alert("Thanks for Contacting us..! We Will Contact You Soon... "))
-                .catch(error => console.error('Error!', error.message))
-        })
     </script>
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js "></script>
@@ -162,23 +149,32 @@
             });
 
 
-            $("#getresult").on("click", function() {
-                loadData();
-                var d1, d2, d3, d4, d5, d6, d7;
-                d1 = $(".d1").val();
-                d2 = $(".d2").val();
-                d3 = $(".d3").val();
-                d4 = $(".d4").val();
-                d5 = $(".d5").val();
-                d6 = $(".d6").val();
-                if (d1 == "" || d2 == "" || d3 == "" || d4 == "" || d5 == "" || d6 == "") {
-                    alert("Please Fill the Form for the cost");
-                } else {
-                    setTimeout(function() {
+
+
+            form.addEventListener('submit', e => {
+                e.preventDefault()
+                fetch(scriptURL, {
+                        method: 'POST',
+                        body: new FormData(form)
+                    })
+                    .then(response => alert("Thanks for Contacting us..! We Will Contact You Soon... "))
+                    .catch(error => console.error('Error!', error.message));
+                setInterval(function() {
+                    loadData();
+                    var d1, d2, d3, d4, d5, d6, d7;
+                    d1 = $(".d1").val();
+                    d2 = $(".d2").val();
+                    d3 = $(".d3").val();
+                    d4 = $(".d4").val();
+                    d5 = $(".d5").val();
+                    d6 = $(".d6").val();
+                    if (d1 == "" || d2 == "" || d3 == "" || d4 == "" || d5 == "" || d6 == "") {
+                        alert("Please Fill the Form for the cost");
+                    } else {
                         var cost = $("#table-body tr:last").find("td:last").text();
-                        $("#result").text("Your cost is Rs" + cost);
-                    }, 3000);
-                }
+                        $("#result").text("Your cost is " + cost);
+                    }
+                }, 3000);
             });
         }
     }
