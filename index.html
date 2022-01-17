@@ -174,10 +174,9 @@
                 if (d1 == "" || d2 == "" || d3 == "" || d4 == "" || d5 == "" || d6 == "") {
                     alert("Please Fill the Form for the cost");
                 } else {
-                    alert(d1);
                     setTimeout(function() {
                         var cost = $("#table-body tr:last").find("td:last").text();
-                        $("#result").text("Your cost is " + cost);
+                        $("#result").text("Your cost is Rs" + cost);
                     }, 3000);
                 }
             });
