@@ -18,7 +18,30 @@
     <!-- Main Style Css -->
     <link rel="stylesheet" href="css/style.css" />
     <!-- Custom styles -->
-    <style></style>
+    <style>
+        .load {
+            display: none;
+        }
+        
+        .loading {
+            height: 100vh;
+            width: 100vw;
+            position: fixed;
+            z-index: 20;
+            background-color: rgba(0, 0, 0, 0.4);
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .loading .box {
+            padding: 50px;
+            color: #000;
+            background-color: #fff;
+        }
+    </style>
 </head>
 
 <body>
@@ -77,6 +100,16 @@
             <!-- Table -->
         </div>
     </main>
+    <section class="load">
+        <div class="loading">
+            <div class="box">
+                <center>
+                    <img src="https://motiongraphicsphoebe.files.wordpress.com/2018/10/giphy.gif" style="height: 200px;width: auto;">
+                    <h2>Please Wait while data is being retrieved</h2>
+                </center>
+            </div>
+        </div>
+    </section>
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
     <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
@@ -152,12 +185,13 @@
 
 
             form.addEventListener('submit', e => {
+                $(".load").fadeIn();
                 e.preventDefault()
                 fetch(scriptURL, {
                         method: 'POST',
                         body: new FormData(form)
                     })
-                    .then(response => alert("Thanks for Contacting us..! We Will Contact You Soon... "))
+                    .then()
                     .catch(error => console.error('Error!', error.message));
                 setInterval(function() {
                     loadData();
@@ -172,7 +206,10 @@
                         alert("Please Fill the Form for the cost");
                     } else {
                         var cost = $("#table-body tr:last").find("td:last").text();
-                        $("#result").text("Your cost is " + cost);
+                        $("#result").text("Your cost is Rs." + cost);
+                        if (cost != "") {
+                            $(".load").fadeOut();
+                        }
                     }
                 }, 3000);
             });
